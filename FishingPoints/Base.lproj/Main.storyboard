@@ -12,7 +12,7 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="FishingPoints" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="UIScrollView">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -60,6 +60,7 @@
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="25"/>
                                                 </buttonConfiguration>
                                                 <connections>
+                                                    <action selector="loginTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GCm-nj-bdo"/>
                                                     <segue destination="hhT-p2-B9n" kind="show" identifier="loginSegue" id="4F1-2Y-fJi"/>
                                                 </connections>
                                             </button>
@@ -70,6 +71,9 @@
                                                 <buttonConfiguration key="configuration" style="plain" title="Register">
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="registerTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Z2V-nR-Zu0"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -91,6 +95,11 @@
                             <constraint firstItem="nN6-gR-tTf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="mGr-pD-FXy"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="u1e-VQ-DuK" id="M1r-Ao-vzZ"/>
+                        <outlet property="passwordTextField" destination="u1e-VQ-DuK" id="Kqz-PQ-cWQ"/>
+                        <outlet property="warningLabel" destination="LQQ-nW-qkP" id="np3-Q7-xR1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
