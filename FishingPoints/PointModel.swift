@@ -6,14 +6,15 @@
 //
 
 import Foundation
+import UIKit
 
 
 struct Point {
     
     var name: String
-    var coordinate: String
-    var typeOfPond: String
-    var imageOfPoint: String
+    var coordinate: String?
+    var typeOfPond: String?
+    var imageOfPoint: UIImage?
     
     
 }

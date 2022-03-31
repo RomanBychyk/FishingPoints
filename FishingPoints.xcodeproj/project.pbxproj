@@ -18,6 +18,7 @@
 		0F0F40FE27F1DDDD00B9963C /* DairyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F40FD27F1DDDD00B9963C /* DairyViewController.swift */; };
 		0F0F410027F1EFA700B9963C /* PointTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F40FF27F1EFA700B9963C /* PointTableViewCell.swift */; };
 		0F0F410227F2053700B9963C /* PointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F410127F2053700B9963C /* PointModel.swift */; };
+		0F0F410427F2FB6200B9963C /* NewPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F410327F2FB6200B9963C /* NewPointViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		0F0F40FD27F1DDDD00B9963C /* DairyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DairyViewController.swift; sourceTree = "<group>"; };
 		0F0F40FF27F1EFA700B9963C /* PointTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointTableViewCell.swift; sourceTree = "<group>"; };
 		0F0F410127F2053700B9963C /* PointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointModel.swift; sourceTree = "<group>"; };
+		0F0F410327F2FB6200B9963C /* NewPointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPointViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				0F0F40FB27F1DDC800B9963C /* PointsViewController.swift */,
 				0F0F40FF27F1EFA700B9963C /* PointTableViewCell.swift */,
 				0F0F410127F2053700B9963C /* PointModel.swift */,
+				0F0F410327F2FB6200B9963C /* NewPointViewController.swift */,
 				0F0F40FD27F1DDDD00B9963C /* DairyViewController.swift */,
 				0F0F40EB27F19CEF00B9963C /* Main.storyboard */,
 				0F0F40EE27F19CF200B9963C /* Assets.xcassets */,
@@ -157,6 +160,7 @@
 				0F0F40EA27F19CEF00B9963C /* LoginViewController.swift in Sources */,
 				0F0F410027F1EFA700B9963C /* PointTableViewCell.swift in Sources */,
 				0F0F40FE27F1DDDD00B9963C /* DairyViewController.swift in Sources */,
+				0F0F410427F2FB6200B9963C /* NewPointViewController.swift in Sources */,
 				0F0F40FA27F1C75700B9963C /* TabBarController.swift in Sources */,
 				0F0F40E627F19CEF00B9963C /* AppDelegate.swift in Sources */,
 				0F0F410227F2053700B9963C /* PointModel.swift in Sources */,

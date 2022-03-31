@@ -9,7 +9,8 @@ import UIKit
 
 class PointsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    let points = [Point(name: "Backwater", coordinate: "Pripyat", typeOfPond: "River", imageOfPoint: "")]
+    @IBOutlet weak var tableView: UITableView!
+    var points = [Point(name: "Backwater", coordinate: "Pripyat", typeOfPond: "River", imageOfPoint: nil)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,9 +23,16 @@ class PointsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pointCell") as! PointTableViewCell
-        cell.nameLabel.text = points[indexPath.row].name
-        cell.typeLabel.text = points[indexPath.row].typeOfPond
-        cell.coordinateLabel.text = points[indexPath.row].coordinate
+        
+        let point = points[indexPath.row]
+        
+        cell.nameLabel.text = point.name
+        cell.typeLabel.text = point.typeOfPond
+        cell.coordinateLabel.text = point.coordinate
+        cell.imageOfPoint.image = point.imageOfPoint
+        
+        cell.imageOfPoint.layer.cornerRadius = cell.imageOfPoint.frame.size.height / 2
+        cell.imageOfPoint.clipsToBounds = true
         
         return cell
     }
@@ -40,4 +48,12 @@ class PointsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     */
 
+    @IBAction func unwindSegue (_ segue: UIStoryboardSegue) {
+        
+        guard let newPointVC = segue.source as? NewPointViewController else { return }
+        
+        newPointVC.saveNewPoint()
+        points.append(newPointVC.newPoint!)
+        tableView.reloadData()
+    }
 }
