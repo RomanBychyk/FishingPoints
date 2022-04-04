@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
+
 
 class PointsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -47,7 +50,15 @@ class PointsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBAction func signOutAction(_ sender: UIBarButtonItem) {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print (error.localizedDescription)
+        }
+        dismiss(animated: true)
+    }
+    
     @IBAction func unwindSegue (_ segue: UIStoryboardSegue) {
         
         guard let newPointVC = segue.source as? NewPointViewController else { return }

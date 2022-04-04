@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1023841778241-4mphro2dnhlu9o0kfv38s45lem4f8ur4.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1023841778241-4mphro2dnhlu9o0kfv38s45lem4f8ur4</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDOyEraMNcynuNL27666SeN2-e6L9uFl6c</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1023841778241</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>RB.FishingPoints</string>
+	<key>PROJECT_ID</key>
+	<string>fishingpoints-e0f7c</string>
+	<key>STORAGE_BUCKET</key>
+	<string>fishingpoints-e0f7c.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1023841778241:ios:dc062d1504832d3f9664c0</string>
+</dict>
+</plist>

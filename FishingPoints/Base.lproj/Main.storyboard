@@ -61,7 +61,6 @@
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="loginTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GCm-nj-bdo"/>
-                                                    <segue destination="hhT-p2-B9n" kind="show" identifier="loginSegue" id="4F1-2Y-fJi"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a1i-2O-3vX">
@@ -96,9 +95,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="emailTextField" destination="u1e-VQ-DuK" id="M1r-Ao-vzZ"/>
+                        <outlet property="emailTextField" destination="DLx-jA-wNA" id="PVu-da-09W"/>
                         <outlet property="passwordTextField" destination="u1e-VQ-DuK" id="Kqz-PQ-cWQ"/>
                         <outlet property="warningLabel" destination="LQQ-nW-qkP" id="np3-Q7-xR1"/>
+                        <segue destination="hhT-p2-B9n" kind="show" identifier="pointsSegue" id="jde-YL-D6X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -234,7 +234,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Fishing Locations" id="HH8-98-g1Y">
-                        <barButtonItem key="leftBarButtonItem" title="Sign out" id="f4x-lp-Vne"/>
+                        <barButtonItem key="leftBarButtonItem" title="Sign out" id="f4x-lp-Vne">
+                            <connections>
+                                <action selector="signOutAction:" destination="kXV-2s-3U0" id="X22-a0-3ZQ"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="yf2-dH-ddD">
                             <connections>
                                 <segue destination="fab-zj-kWX" kind="presentation" id="V8v-5C-pNa"/>

@@ -19,6 +19,8 @@
 		0F0F410027F1EFA700B9963C /* PointTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F40FF27F1EFA700B9963C /* PointTableViewCell.swift */; };
 		0F0F410227F2053700B9963C /* PointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F410127F2053700B9963C /* PointModel.swift */; };
 		0F0F410427F2FB6200B9963C /* NewPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F410327F2FB6200B9963C /* NewPointViewController.swift */; };
+		0F0F410627F59D5400B9963C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F0F410527F59D5300B9963C /* GoogleService-Info.plist */; };
+		5665CAFD0CEDCC2A8F7BDF2C /* Pods_FishingPoints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6AD3F85195FE09A744C7906 /* Pods_FishingPoints.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,10 @@
 		0F0F40FF27F1EFA700B9963C /* PointTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointTableViewCell.swift; sourceTree = "<group>"; };
 		0F0F410127F2053700B9963C /* PointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointModel.swift; sourceTree = "<group>"; };
 		0F0F410327F2FB6200B9963C /* NewPointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPointViewController.swift; sourceTree = "<group>"; };
+		0F0F410527F59D5300B9963C /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		433A935A2E4495703F117EA3 /* Pods-FishingPoints.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FishingPoints.release.xcconfig"; path = "Target Support Files/Pods-FishingPoints/Pods-FishingPoints.release.xcconfig"; sourceTree = "<group>"; };
+		C2F2FD9EB82E49A35A0F9250 /* Pods-FishingPoints.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FishingPoints.debug.xcconfig"; path = "Target Support Files/Pods-FishingPoints/Pods-FishingPoints.debug.xcconfig"; sourceTree = "<group>"; };
+		C6AD3F85195FE09A744C7906 /* Pods_FishingPoints.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FishingPoints.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5665CAFD0CEDCC2A8F7BDF2C /* Pods_FishingPoints.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +61,8 @@
 			children = (
 				0F0F40E427F19CEE00B9963C /* FishingPoints */,
 				0F0F40E327F19CEE00B9963C /* Products */,
+				B509C43D831711F8C49942F5 /* Pods */,
+				2B50299563E4A85AE0E06EFE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,8 +90,27 @@
 				0F0F40EE27F19CF200B9963C /* Assets.xcassets */,
 				0F0F40F027F19CF200B9963C /* LaunchScreen.storyboard */,
 				0F0F40F327F19CF200B9963C /* Info.plist */,
+				0F0F410527F59D5300B9963C /* GoogleService-Info.plist */,
 			);
 			path = FishingPoints;
+			sourceTree = "<group>";
+		};
+		2B50299563E4A85AE0E06EFE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C6AD3F85195FE09A744C7906 /* Pods_FishingPoints.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B509C43D831711F8C49942F5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C2F2FD9EB82E49A35A0F9250 /* Pods-FishingPoints.debug.xcconfig */,
+				433A935A2E4495703F117EA3 /* Pods-FishingPoints.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -92,9 +120,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0F0F40F627F19CF200B9963C /* Build configuration list for PBXNativeTarget "FishingPoints" */;
 			buildPhases = (
+				4B56E15C9F4C1CDFBA3FB85D /* [CP] Check Pods Manifest.lock */,
 				0F0F40DE27F19CEE00B9963C /* Sources */,
 				0F0F40DF27F19CEE00B9963C /* Frameworks */,
 				0F0F40E027F19CEE00B9963C /* Resources */,
+				B74B6151285FB32E6A5C61E8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -144,12 +174,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F0F40F227F19CF200B9963C /* LaunchScreen.storyboard in Resources */,
+				0F0F410627F59D5400B9963C /* GoogleService-Info.plist in Resources */,
 				0F0F40EF27F19CF200B9963C /* Assets.xcassets in Resources */,
 				0F0F40ED27F19CEF00B9963C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4B56E15C9F4C1CDFBA3FB85D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FishingPoints-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B74B6151285FB32E6A5C61E8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FishingPoints/Pods-FishingPoints-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FishingPoints/Pods-FishingPoints-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FishingPoints/Pods-FishingPoints-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0F0F40DE27F19CEE00B9963C /* Sources */ = {
@@ -308,6 +381,7 @@
 		};
 		0F0F40F727F19CF200B9963C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2F2FD9EB82E49A35A0F9250 /* Pods-FishingPoints.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -336,6 +410,7 @@
 		};
 		0F0F40F827F19CF200B9963C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 433A935A2E4495703F117EA3 /* Pods-FishingPoints.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

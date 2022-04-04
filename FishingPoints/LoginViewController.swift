@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class LoginViewController: UIViewController {
     @IBOutlet weak var warningLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    let segueIdentifier = "pointsSegue"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +27,18 @@ class LoginViewController: UIViewController {
         
         warningLabel.alpha = 0
         
+        Auth.auth().addStateDidChangeListener { [weak self] (auth, user) in
+            if user != nil {
+                self?.performSegue(withIdentifier: (self?.segueIdentifier)!, sender: nil)
+            }
+        }
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        emailTextField.text = ""
+        passwordTextField.text = ""
     }
     
     
@@ -48,12 +63,44 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func loginTapped(_ sender: UIButton) {
-        
-    }
-    @IBAction func registerTapped(_ sender: UIButton) {
+        guard let email = emailTextField.text, let password = passwordTextField.text, email != "", password != "" else {
+            displayWarningLabel(withText: "You need to enter email and password")
+                                return }
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] user, error in
+            if error != nil {
+                self?.displayWarningLabel(withText: "Error occured")
+                return
+            }
+            if user != nil {
+                self?.performSegue(withIdentifier: "pointsSegue", sender: nil)
+                return
+            }
+            self?.displayWarningLabel(withText: "No such user")
+        }
         
     }
     
+    func displayWarningLabel (withText text: String) {
+        warningLabel.text = text
+        UIView.animate(withDuration: 10, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn) {[weak self] in
+            self?.warningLabel.alpha = 1
+        } completion: { [weak self] complete in
+            self?.warningLabel.alpha = 0
+        }
+    }
+    
+    @IBAction func registerTapped(_ sender: UIButton) {
+        guard let email = emailTextField.text, let password = passwordTextField.text, email != "", password != "" else {
+            displayWarningLabel(withText: "You need to enter email and password")
+                                return }
+        
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
 
+            guard error == nil, user != nil else {
+                print(error!.localizedDescription)
+                return
+            }
+        }
+    }
 }
 
