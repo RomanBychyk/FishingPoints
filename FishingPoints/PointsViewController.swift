@@ -13,11 +13,32 @@ import FirebaseDatabase
 class PointsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-    var points = [Point(name: "Backwater", coordinate: "Pripyat", typeOfPond: "River", imageOfPoint: nil)]
+    var points = [Point]()
+    
+    var user: Users!
+    var ref: DatabaseReference!
+    //var points = Array<Point>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let currentUser = Auth.auth().currentUser else { return }
+        user = Users(user: currentUser)
+        ref = Database.database(url: "https://fishingpoints-e0f7c-default-rtdb.firebaseio.com/") .reference(withPath: "users").child(user.uid).child("points")
+    }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        ref.observe(.value) { [weak self] snapshot in
+            //создаk массив для хранения задач, чтобы каждый раз проходя по циклу не дублировались записи
+            var _points = Array<Point>()
+            for item in snapshot.children {
+                let point = Point(snapshot: item as! DataSnapshot)
+                _points.append(point)
+            }
+            self?.points = _points
+            self?.tableView.reloadData()
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -30,10 +51,13 @@ class PointsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let point = points[indexPath.row]
         
         cell.nameLabel.text = point.name
-        cell.typeLabel.text = point.typeOfPond
-        cell.coordinateLabel.text = point.coordinate
-        cell.imageOfPoint.image = point.imageOfPoint
+       // cell.typeLabel.text = point.typeOfPond
+        cell.coordinateLabel.text = point.coordinates
         
+        
+        //cell.imageOfPoint.image = UIImage(data: point.imageOfPoint!)
+        
+
         cell.imageOfPoint.layer.cornerRadius = cell.imageOfPoint.frame.size.height / 2
         cell.imageOfPoint.clipsToBounds = true
         
@@ -50,6 +74,9 @@ class PointsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Pass the selected object to the new view controller.
     }
     */
+
+    
+    
     @IBAction func signOutAction(_ sender: UIBarButtonItem) {
         do {
             try Auth.auth().signOut()
@@ -62,9 +89,13 @@ class PointsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func unwindSegue (_ segue: UIStoryboardSegue) {
         
         guard let newPointVC = segue.source as? NewPointViewController else { return }
-        
         newPointVC.saveNewPoint()
+        let newPoint = newPointVC.newPoint!
+        let pointRef = ref?.child(newPoint.name)
+        //и теперь по этой ссылке помещаем нашу новую точку
+        pointRef?.setValue(newPoint.convertToDictionary())
         points.append(newPointVC.newPoint!)
+
         tableView.reloadData()
     }
 }

@@ -6,10 +6,16 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseDatabase
+
 
 class NewPointViewController: UITableViewController {
     
-    var newPoint: Point?
+    var newPoint: Point!
+    var user: Users!
+
+    var imageIsChange = false
     
     @IBOutlet weak var imageOfPoint: UIImageView!
     @IBOutlet weak var pointName: UITextField!
@@ -17,11 +23,19 @@ class NewPointViewController: UITableViewController {
     @IBOutlet weak var pointType: UIPickerView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
+
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         saveButton.isEnabled = false
         
         pointName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        
+        guard let currentUser = Auth.auth().currentUser else { return }
+        user = Users(user: currentUser)
+        
         
     }
 
@@ -61,9 +75,15 @@ class NewPointViewController: UITableViewController {
     
     func saveNewPoint () {
         
-        newPoint = Point(name: pointName.text!, coordinate: coordinatesTF.text, typeOfPond: pointType.textInputContextIdentifier, imageOfPoint: imageOfPoint.image)
+        let image = imageIsChange ? imageOfPoint.image! :  #imageLiteral(resourceName: "Photo")
+        let imageData = image.pngData()
+
+        
+        newPoint = Point(name: pointName.text!, userID: user.uid, coordinates: coordinatesTF.text/*typeOfPond: pointType.textInputContextIdentifier, rating: 0.0, imageOfPoint: imageData, description: nil */)
         
     }
+    
+    
     @IBAction func cancelAction(_ sender: Any) {
         dismiss(animated: true)
     }
@@ -106,6 +126,8 @@ extension NewPointViewController: UIImagePickerControllerDelegate, UINavigationC
         imageOfPoint.image = info[.editedImage] as? UIImage
         imageOfPoint.contentMode = .scaleAspectFill
         imageOfPoint.clipsToBounds = true
+        
+        imageIsChange = true
         dismiss(animated: true, completion: nil)
     }
 }
