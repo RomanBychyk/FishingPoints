@@ -296,12 +296,26 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Photo" translatesAutoresizingMaskIntoConstraints="NO" id="Hfd-8g-BFl">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dVW-wA-uyp">
+                                                    <rect key="frame" x="364" y="200" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="MEb-BS-Jbo"/>
+                                                        <constraint firstAttribute="height" constant="50" id="sDN-1z-7Tj"/>
+                                                    </constraints>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" image="map" catalog="system"/>
+                                                    <connections>
+                                                        <segue destination="KYg-a2-bVe" kind="presentation" identifier="showMap" id="12V-7K-wPu"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="Hfd-8g-BFl" firstAttribute="top" secondItem="0oe-hp-XR9" secondAttribute="top" id="381-Bt-2Pb"/>
                                                 <constraint firstAttribute="bottom" secondItem="Hfd-8g-BFl" secondAttribute="bottom" id="7rW-pM-ivz"/>
+                                                <constraint firstAttribute="bottom" secondItem="dVW-wA-uyp" secondAttribute="bottom" id="DKd-e9-NtH"/>
                                                 <constraint firstItem="Hfd-8g-BFl" firstAttribute="leading" secondItem="0oe-hp-XR9" secondAttribute="leading" id="Hcm-PQ-sM1"/>
+                                                <constraint firstAttribute="trailing" secondItem="dVW-wA-uyp" secondAttribute="trailing" id="PVc-Qw-NQj"/>
                                                 <constraint firstAttribute="trailing" secondItem="Hfd-8g-BFl" secondAttribute="trailing" id="bNH-fY-ccV"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -482,6 +496,52 @@
             </objects>
             <point key="canvasLocation" x="4057.971014492754" y="-220.3125"/>
         </scene>
+        <!--Map View Controller-->
+        <scene sceneID="PrI-2V-sFY">
+            <objects>
+                <viewController id="KYg-a2-bVe" customClass="MapViewController" customModule="FishingPoints" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8lB-ee-Rn0">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="6FT-dQ-Pc0">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <connections>
+                                    <outlet property="delegate" destination="KYg-a2-bVe" id="err-ef-gyX"/>
+                                </connections>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pZZ-Ph-G41">
+                                <rect key="frame" x="344" y="40" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="0UP-pC-POO"/>
+                                    <constraint firstAttribute="height" constant="30" id="vE1-zG-8df"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="clear" catalog="system"/>
+                                <connections>
+                                    <action selector="cancelAction:" destination="KYg-a2-bVe" eventType="touchUpInside" id="I9g-Be-44X"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="LL4-gT-V9g"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="LL4-gT-V9g" firstAttribute="trailing" secondItem="pZZ-Ph-G41" secondAttribute="trailing" constant="40" id="0Lm-u4-xjG"/>
+                            <constraint firstItem="6FT-dQ-Pc0" firstAttribute="leading" secondItem="LL4-gT-V9g" secondAttribute="leading" id="1p7-Xj-Xj5"/>
+                            <constraint firstAttribute="bottom" secondItem="6FT-dQ-Pc0" secondAttribute="bottom" id="Alz-Pn-yqc"/>
+                            <constraint firstItem="pZZ-Ph-G41" firstAttribute="top" secondItem="LL4-gT-V9g" secondAttribute="top" constant="40" id="PS0-Zq-Sph"/>
+                            <constraint firstItem="6FT-dQ-Pc0" firstAttribute="top" secondItem="8lB-ee-Rn0" secondAttribute="top" id="Vtc-fu-cRK"/>
+                            <constraint firstItem="6FT-dQ-Pc0" firstAttribute="trailing" secondItem="LL4-gT-V9g" secondAttribute="trailing" id="Y23-Wo-N9P"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="6FT-dQ-Pc0" id="49O-yQ-Ais"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ogi-Wn-CDn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4986.9565217391309" y="-220.3125"/>
+        </scene>
         <!--FishingPoints-->
         <scene sceneID="cNc-0b-RaG">
             <objects>
@@ -559,12 +619,22 @@
             <point key="canvasLocation" x="3886" y="-989"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="0UG-gD-eZx">
+            <size key="intrinsicContentSize" width="90" height="33"/>
+        </designable>
+        <designable name="UU8-Pu-KRL">
+            <size key="intrinsicContentSize" width="170" height="30"/>
+        </designable>
+    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="8Kf-QE-dgU"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="LogoFishingPoints" width="120" height="120"/>
         <image name="Photo" width="195" height="196"/>
+        <image name="clear" catalog="system" width="128" height="114"/>
+        <image name="map" catalog="system" width="128" height="110"/>
         <image name="note.text" catalog="system" width="128" height="106"/>
         <image name="point.filled.topleft.down.curvedto.point.bottomright.up" catalog="system" width="121" height="128"/>
         <systemColor name="systemBackgroundColor">

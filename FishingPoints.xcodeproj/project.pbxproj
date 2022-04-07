@@ -21,6 +21,7 @@
 		0F0F410427F2FB6200B9963C /* NewPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F410327F2FB6200B9963C /* NewPointViewController.swift */; };
 		0F0F410627F59D5400B9963C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F0F410527F59D5300B9963C /* GoogleService-Info.plist */; };
 		0FFC89FA27FAE08A009FAA8F /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC89F927FAE08A009FAA8F /* UserModel.swift */; };
+		0FFC89FC27FED558009FAA8F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC89FB27FED558009FAA8F /* MapViewController.swift */; };
 		5665CAFD0CEDCC2A8F7BDF2C /* Pods_FishingPoints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6AD3F85195FE09A744C7906 /* Pods_FishingPoints.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		0F0F410327F2FB6200B9963C /* NewPointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPointViewController.swift; sourceTree = "<group>"; };
 		0F0F410527F59D5300B9963C /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		0FFC89F927FAE08A009FAA8F /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		0FFC89FB27FED558009FAA8F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		433A935A2E4495703F117EA3 /* Pods-FishingPoints.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FishingPoints.release.xcconfig"; path = "Target Support Files/Pods-FishingPoints/Pods-FishingPoints.release.xcconfig"; sourceTree = "<group>"; };
 		C2F2FD9EB82E49A35A0F9250 /* Pods-FishingPoints.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FishingPoints.debug.xcconfig"; path = "Target Support Files/Pods-FishingPoints/Pods-FishingPoints.debug.xcconfig"; sourceTree = "<group>"; };
 		C6AD3F85195FE09A744C7906 /* Pods_FishingPoints.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FishingPoints.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,23 +81,56 @@
 		0F0F40E427F19CEE00B9963C /* FishingPoints */ = {
 			isa = PBXGroup;
 			children = (
-				0F0F40E527F19CEF00B9963C /* AppDelegate.swift */,
-				0F0F40E727F19CEF00B9963C /* SceneDelegate.swift */,
-				0F0F40E927F19CEF00B9963C /* LoginViewController.swift */,
-				0F0F40F927F1C75700B9963C /* TabBarController.swift */,
-				0F0F40FB27F1DDC800B9963C /* PointsViewController.swift */,
-				0F0F40FF27F1EFA700B9963C /* PointTableViewCell.swift */,
-				0F0F410127F2053700B9963C /* PointModel.swift */,
-				0FFC89F927FAE08A009FAA8F /* UserModel.swift */,
-				0F0F410327F2FB6200B9963C /* NewPointViewController.swift */,
-				0F0F40FD27F1DDDD00B9963C /* DairyViewController.swift */,
-				0F0F40EB27F19CEF00B9963C /* Main.storyboard */,
-				0F0F40EE27F19CF200B9963C /* Assets.xcassets */,
-				0F0F40F027F19CF200B9963C /* LaunchScreen.storyboard */,
+				0FFC89FE27FEFE3C009FAA8F /* Models */,
+				0FFC89FF27FEFE63009FAA8F /* Views */,
+				0FFC89FD27FEFDF8009FAA8F /* Controllers */,
+				0FFC8A0027FEFEB8009FAA8F /* Support files */,
 				0F0F40F327F19CF200B9963C /* Info.plist */,
 				0F0F410527F59D5300B9963C /* GoogleService-Info.plist */,
 			);
 			path = FishingPoints;
+			sourceTree = "<group>";
+		};
+		0FFC89FD27FEFDF8009FAA8F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0F0F410327F2FB6200B9963C /* NewPointViewController.swift */,
+				0FFC89FB27FED558009FAA8F /* MapViewController.swift */,
+				0F0F40FD27F1DDDD00B9963C /* DairyViewController.swift */,
+				0F0F40E927F19CEF00B9963C /* LoginViewController.swift */,
+				0F0F40F927F1C75700B9963C /* TabBarController.swift */,
+				0F0F40FB27F1DDC800B9963C /* PointsViewController.swift */,
+				0F0F40FF27F1EFA700B9963C /* PointTableViewCell.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		0FFC89FE27FEFE3C009FAA8F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0FFC89F927FAE08A009FAA8F /* UserModel.swift */,
+				0F0F410127F2053700B9963C /* PointModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		0FFC89FF27FEFE63009FAA8F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0F0F40EB27F19CEF00B9963C /* Main.storyboard */,
+				0F0F40F027F19CF200B9963C /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0FFC8A0027FEFEB8009FAA8F /* Support files */ = {
+			isa = PBXGroup;
+			children = (
+				0F0F40E527F19CEF00B9963C /* AppDelegate.swift */,
+				0F0F40E727F19CEF00B9963C /* SceneDelegate.swift */,
+				0F0F40EE27F19CF200B9963C /* Assets.xcassets */,
+			);
+			path = "Support files";
 			sourceTree = "<group>";
 		};
 		2B50299563E4A85AE0E06EFE /* Frameworks */ = {
@@ -231,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0FFC89FC27FED558009FAA8F /* MapViewController.swift in Sources */,
 				0F0F40FC27F1DDC800B9963C /* PointsViewController.swift in Sources */,
 				0F0F40EA27F19CEF00B9963C /* LoginViewController.swift in Sources */,
 				0F0F410027F1EFA700B9963C /* PointTableViewCell.swift in Sources */,
