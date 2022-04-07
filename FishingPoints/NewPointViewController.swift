@@ -8,13 +8,17 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
-
+import FirebaseStorage
+import Cosmos
 
 class NewPointViewController: UITableViewController {
     
+    var currentPoint: Point?
+    var currentRating = 0.0
+    
     var newPoint: Point!
     var user: Users!
-
+    var ref: DatabaseReference!
     var imageIsChange = false
     
     @IBOutlet weak var imageOfPoint: UIImageView!
@@ -22,6 +26,7 @@ class NewPointViewController: UITableViewController {
     @IBOutlet weak var coordinatesTF: UITextField!
     @IBOutlet weak var pointType: UIPickerView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var cosmosView: CosmosView!
     
 
     
@@ -35,7 +40,13 @@ class NewPointViewController: UITableViewController {
         
         guard let currentUser = Auth.auth().currentUser else { return }
         user = Users(user: currentUser)
+        ref = Database.database(url: "https://fishingpoints-e0f7c-default-rtdb.firebaseio.com/").reference(withPath: "users").child(user.uid).child("points")
         
+        setupEditScreen()
+        
+        cosmosView.didTouchCosmos = { rating in
+            self.currentRating = rating
+        }
         
     }
 
@@ -73,21 +84,40 @@ class NewPointViewController: UITableViewController {
         }
     }
     
+    
     func saveNewPoint () {
         
         let image = imageIsChange ? imageOfPoint.image! :  #imageLiteral(resourceName: "Photo")
         let imageData = image.pngData()
+        let base64string = imageData!.base64EncodedString(options: [.lineLength64Characters])
 
-        
-        newPoint = Point(name: pointName.text!, userID: user.uid, coordinates: coordinatesTF.text/*typeOfPond: pointType.textInputContextIdentifier, rating: 0.0, imageOfPoint: imageData, description: nil */)
-        
+        newPoint = Point(name: pointName.text!, rating: currentRating, userID: user.uid, coordinates: coordinatesTF.text, imageOfPoint: base64string)
+        if currentPoint != nil {
+            currentPoint?.name = newPoint.name
+            currentPoint?.coordinates = newPoint.coordinates
+            currentPoint?.rating = newPoint.rating
+        }
     }
-    
     
     @IBAction func cancelAction(_ sender: Any) {
         dismiss(animated: true)
     }
     
+    private func setupEditScreen () {
+        setupNavigationBar()
+        if currentPoint != nil {
+            pointName.text = currentPoint?.name
+            coordinatesTF.text = currentPoint?.coordinates
+            imageOfPoint.image = UIImage(data: Data(base64Encoded: (currentPoint?.imageOfPoint)!, options: .ignoreUnknownCharacters)!)
+            cosmosView.rating = currentPoint!.rating
+        }
+    }
+    
+    private func setupNavigationBar () {
+        navigationItem.leftBarButtonItem = nil
+        title = currentPoint?.name
+        saveButton.isEnabled = true
+    }
 }
 
 extension NewPointViewController: UITextFieldDelegate {

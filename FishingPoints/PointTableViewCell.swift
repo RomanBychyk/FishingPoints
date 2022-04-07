@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Cosmos
 
 class PointTableViewCell: UITableViewCell {
 
@@ -13,17 +14,19 @@ class PointTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var coordinateLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var cosmosView: CosmosView! {
+        didSet {
+            cosmosView.settings.updateOnTouch = false
+        }
+    }
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }
