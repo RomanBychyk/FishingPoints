@@ -11,6 +11,9 @@ import FirebaseDatabase
 import FirebaseStorage
 import Cosmos
 
+
+
+
 class NewPointViewController: UITableViewController {
     
     var currentPoint: Point?
@@ -87,18 +90,21 @@ class NewPointViewController: UITableViewController {
     //MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier != "showMap" { return }
-        let mapVC = segue.destination as! MapViewController
-        mapVC.point = currentPoint
+        
+        guard let identifier = segue.identifier, let mapVC = segue.destination as? MapViewController else { return }
+        
+        mapVC.incomeSegueIdentifier = identifier
+        mapVC.mapVCDelegate = self
+        
+        if identifier == "showMap" {
+            mapVC.point = currentPoint
+        }
     }
     
     
     func saveNewPoint () {
         
         let image = imageIsChange ? imageOfPoint.image! :  #imageLiteral(resourceName: "Photo")
-//        let imageData = image.pngData()
-//        let base64string = imageData!.base64EncodedString(options: [.lineLength64Characters])
-
         newPoint = Point(name: pointName.text!, rating: currentRating, userID: user.uid, coordinates: coordinatesTF.text, imageOfPoint: codingImage(fromImage: image))
         
 //        if currentPoint != nil {
@@ -183,5 +189,11 @@ extension NewPointViewController: UIImagePickerControllerDelegate, UINavigationC
         
         imageIsChange = true
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension NewPointViewController: MapViewControllerDelegate {
+    func getCoordinates(_ coordinates: String?) {
+        coordinatesTF.text = coordinates
     }
 }
