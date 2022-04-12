@@ -87,9 +87,7 @@ class NewPointViewController: UITableViewController {
     //MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier != "showMap" {
-            return
-        }
+        if segue.identifier != "showMap" { return }
         let mapVC = segue.destination as! MapViewController
         mapVC.point = currentPoint
     }
@@ -98,15 +96,21 @@ class NewPointViewController: UITableViewController {
     func saveNewPoint () {
         
         let image = imageIsChange ? imageOfPoint.image! :  #imageLiteral(resourceName: "Photo")
-        let imageData = image.pngData()
-        let base64string = imageData!.base64EncodedString(options: [.lineLength64Characters])
+//        let imageData = image.pngData()
+//        let base64string = imageData!.base64EncodedString(options: [.lineLength64Characters])
 
-        newPoint = Point(name: pointName.text!, rating: currentRating, userID: user.uid, coordinates: coordinatesTF.text, imageOfPoint: base64string)
-        if currentPoint != nil {
-            currentPoint?.name = newPoint.name
-            currentPoint?.coordinates = newPoint.coordinates
-            currentPoint?.rating = newPoint.rating
-        }
+        newPoint = Point(name: pointName.text!, rating: currentRating, userID: user.uid, coordinates: coordinatesTF.text, imageOfPoint: codingImage(fromImage: image))
+        
+//        if currentPoint != nil {
+//            currentPoint?.name = newPoint.name
+//            currentPoint?.coordinates = newPoint.coordinates
+//            currentPoint?.rating = newPoint.rating
+//            currentPoint?.imageOfPoint = newPoint.imageOfPoint
+//            currentPoint?.ref?.updateChildValues(["name": currentPoint?.name as Any, "coordinates": currentPoint?.coordinates as Any, "photo": currentPoint?.imageOfPoint as Any, "rating": currentPoint?.rating as Any])
+//        } else {
+//            let pointRef = ref?.child(newPoint.name)
+//            pointRef?.setValue(newPoint.convertToDictionary())
+//        }
     }
     
     @IBAction func cancelAction(_ sender: Any) {
@@ -114,11 +118,14 @@ class NewPointViewController: UITableViewController {
     }
     
     private func setupEditScreen () {
-        setupNavigationBar()
         if currentPoint != nil {
+            setupNavigationBar()
+            imageIsChange = true
+            guard let imageString = currentPoint?.imageOfPoint, let image = UIImage(data: Data(base64Encoded: imageString, options: .ignoreUnknownCharacters)!) else { return }
+            imageOfPoint.image = image
+            imageOfPoint.contentMode = .scaleAspectFill
             pointName.text = currentPoint?.name
             coordinatesTF.text = currentPoint?.coordinates
-            imageOfPoint.image = UIImage(data: Data(base64Encoded: (currentPoint?.imageOfPoint)!, options: .ignoreUnknownCharacters)!)
             cosmosView.rating = currentPoint!.rating
         }
     }
@@ -127,6 +134,13 @@ class NewPointViewController: UITableViewController {
         navigationItem.leftBarButtonItem = nil
         title = currentPoint?.name
         saveButton.isEnabled = true
+    }
+    
+    private func codingImage(fromImage image: UIImage) -> String {
+        let imageData = image.pngData()
+        let base64string = imageData!.base64EncodedString(options: [.lineLength64Characters])
+        
+        return base64string
     }
 }
 

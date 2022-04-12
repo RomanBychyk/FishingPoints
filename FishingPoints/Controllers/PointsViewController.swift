@@ -79,9 +79,9 @@ class PointsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         cell.nameLabel.text = point.name
         cell.coordinateLabel.text = point.coordinates
-        let decodeData = Data(base64Encoded: point.imageOfPoint!, options: .ignoreUnknownCharacters)!
-        let decodedImage = UIImage(data: decodeData)
-        cell.imageOfPoint.image = decodedImage
+//        let decodeData = Data(base64Encoded: point.imageOfPoint!, options: .ignoreUnknownCharacters)!
+//        let decodedImage = UIImage(data: decodeData)
+        cell.imageOfPoint.image = decodeImage(fromString: point.imageOfPoint!)//decodedImage
         cell.imageOfPoint.layer.cornerRadius = cell.imageOfPoint.frame.size.height / 2
         cell.imageOfPoint.clipsToBounds = true
         cell.cosmosView.rating = point.rating
@@ -101,6 +101,13 @@ class PointsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
    
     
+    private func decodeImage (fromString string: String?) -> UIImage {
+        let decodeData = Data(base64Encoded: string!, options: .ignoreUnknownCharacters)!
+        let decodedImage = UIImage(data: decodeData)
+        
+        return decodedImage!
+    }
+    
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -115,7 +122,7 @@ class PointsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             let newPointVC = segue.destination as! NewPointViewController
             newPointVC.currentPoint = point
-            
+            newPointVC.currentRating = point.rating
         }
         
     }
