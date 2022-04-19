@@ -20,6 +20,11 @@
 		0F0F410227F2053700B9963C /* PointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F410127F2053700B9963C /* PointModel.swift */; };
 		0F0F410427F2FB6200B9963C /* NewPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F410327F2FB6200B9963C /* NewPointViewController.swift */; };
 		0F0F410627F59D5400B9963C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F0F410527F59D5300B9963C /* GoogleService-Info.plist */; };
+		0F8338652806F6D0008946AB /* DairyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8338642806F6D0008946AB /* DairyTableViewCell.swift */; };
+		0F833867280703FB008946AB /* NewNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F833866280703FB008946AB /* NewNoteViewController.swift */; };
+		0F833869280808B8008946AB /* CatchesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F833868280808B7008946AB /* CatchesTableViewCell.swift */; };
+		0F83386B28081E9C008946AB /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F83386A28081E9C008946AB /* NoteModel.swift */; };
+		0F83386D28082246008946AB /* CatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F83386C28082246008946AB /* CatchModel.swift */; };
 		0FFC89FA27FAE08A009FAA8F /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC89F927FAE08A009FAA8F /* UserModel.swift */; };
 		0FFC89FC27FED558009FAA8F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC89FB27FED558009FAA8F /* MapViewController.swift */; };
 		5665CAFD0CEDCC2A8F7BDF2C /* Pods_FishingPoints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6AD3F85195FE09A744C7906 /* Pods_FishingPoints.framework */; };
@@ -41,6 +46,11 @@
 		0F0F410127F2053700B9963C /* PointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointModel.swift; sourceTree = "<group>"; };
 		0F0F410327F2FB6200B9963C /* NewPointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPointViewController.swift; sourceTree = "<group>"; };
 		0F0F410527F59D5300B9963C /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		0F8338642806F6D0008946AB /* DairyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DairyTableViewCell.swift; sourceTree = "<group>"; };
+		0F833866280703FB008946AB /* NewNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteViewController.swift; sourceTree = "<group>"; };
+		0F833868280808B7008946AB /* CatchesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchesTableViewCell.swift; sourceTree = "<group>"; };
+		0F83386A28081E9C008946AB /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
+		0F83386C28082246008946AB /* CatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchModel.swift; sourceTree = "<group>"; };
 		0FFC89F927FAE08A009FAA8F /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		0FFC89FB27FED558009FAA8F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		433A935A2E4495703F117EA3 /* Pods-FishingPoints.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FishingPoints.release.xcconfig"; path = "Target Support Files/Pods-FishingPoints/Pods-FishingPoints.release.xcconfig"; sourceTree = "<group>"; };
@@ -97,10 +107,10 @@
 				0F0F410327F2FB6200B9963C /* NewPointViewController.swift */,
 				0FFC89FB27FED558009FAA8F /* MapViewController.swift */,
 				0F0F40FD27F1DDDD00B9963C /* DairyViewController.swift */,
+				0F833866280703FB008946AB /* NewNoteViewController.swift */,
 				0F0F40E927F19CEF00B9963C /* LoginViewController.swift */,
 				0F0F40F927F1C75700B9963C /* TabBarController.swift */,
 				0F0F40FB27F1DDC800B9963C /* PointsViewController.swift */,
-				0F0F40FF27F1EFA700B9963C /* PointTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -110,6 +120,8 @@
 			children = (
 				0FFC89F927FAE08A009FAA8F /* UserModel.swift */,
 				0F0F410127F2053700B9963C /* PointModel.swift */,
+				0F83386A28081E9C008946AB /* NoteModel.swift */,
+				0F83386C28082246008946AB /* CatchModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -117,6 +129,9 @@
 		0FFC89FF27FEFE63009FAA8F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0F0F40FF27F1EFA700B9963C /* PointTableViewCell.swift */,
+				0F8338642806F6D0008946AB /* DairyTableViewCell.swift */,
+				0F833868280808B7008946AB /* CatchesTableViewCell.swift */,
 				0F0F40EB27F19CEF00B9963C /* Main.storyboard */,
 				0F0F40F027F19CF200B9963C /* LaunchScreen.storyboard */,
 			);
@@ -269,14 +284,19 @@
 				0FFC89FC27FED558009FAA8F /* MapViewController.swift in Sources */,
 				0F0F40FC27F1DDC800B9963C /* PointsViewController.swift in Sources */,
 				0F0F40EA27F19CEF00B9963C /* LoginViewController.swift in Sources */,
+				0F833867280703FB008946AB /* NewNoteViewController.swift in Sources */,
+				0F8338652806F6D0008946AB /* DairyTableViewCell.swift in Sources */,
 				0F0F410027F1EFA700B9963C /* PointTableViewCell.swift in Sources */,
 				0F0F40FE27F1DDDD00B9963C /* DairyViewController.swift in Sources */,
 				0F0F410427F2FB6200B9963C /* NewPointViewController.swift in Sources */,
 				0F0F40FA27F1C75700B9963C /* TabBarController.swift in Sources */,
+				0F833869280808B8008946AB /* CatchesTableViewCell.swift in Sources */,
+				0F83386B28081E9C008946AB /* NoteModel.swift in Sources */,
 				0F0F40E627F19CEF00B9963C /* AppDelegate.swift in Sources */,
 				0F0F410227F2053700B9963C /* PointModel.swift in Sources */,
 				0FFC89FA27FAE08A009FAA8F /* UserModel.swift in Sources */,
 				0F0F40E827F19CEF00B9963C /* SceneDelegate.swift in Sources */,
+				0F83386D28082246008946AB /* CatchModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

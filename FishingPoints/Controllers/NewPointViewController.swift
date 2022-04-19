@@ -24,6 +24,7 @@ class NewPointViewController: UITableViewController {
     var ref: DatabaseReference!
     var imageIsChange = false
     
+    
     @IBOutlet weak var imageOfPoint: UIImageView!
     @IBOutlet weak var pointName: UITextField!
     @IBOutlet weak var coordinatesTF: UITextField!
@@ -107,16 +108,6 @@ class NewPointViewController: UITableViewController {
         let image = imageIsChange ? imageOfPoint.image! :  #imageLiteral(resourceName: "Photo")
         newPoint = Point(name: pointName.text!, rating: currentRating, userID: user.uid, coordinates: coordinatesTF.text, imageOfPoint: codingImage(fromImage: image))
         
-//        if currentPoint != nil {
-//            currentPoint?.name = newPoint.name
-//            currentPoint?.coordinates = newPoint.coordinates
-//            currentPoint?.rating = newPoint.rating
-//            currentPoint?.imageOfPoint = newPoint.imageOfPoint
-//            currentPoint?.ref?.updateChildValues(["name": currentPoint?.name as Any, "coordinates": currentPoint?.coordinates as Any, "photo": currentPoint?.imageOfPoint as Any, "rating": currentPoint?.rating as Any])
-//        } else {
-//            let pointRef = ref?.child(newPoint.name)
-//            pointRef?.setValue(newPoint.convertToDictionary())
-//        }
     }
     
     @IBAction func cancelAction(_ sender: Any) {

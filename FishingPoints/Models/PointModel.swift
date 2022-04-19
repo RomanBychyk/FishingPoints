@@ -40,8 +40,6 @@ struct Point {
         let snapShotValue = snapshot.value as! [String: AnyObject]
         name = snapShotValue["name"] as! String
 //        typeOfPond = snapShotValue["typeOfPond"] as? String
-//        rating = snapShotValue["rating"] as! Double
-//        imageOfPoint = snapShotValue["imageOfPoint"] as? Data
 //        description = snapShotValue["description"] as? String
         rating = snapShotValue ["rating"] as! Double
         imageOfPoint = snapShotValue["photo"] as? String
@@ -52,6 +50,6 @@ struct Point {
     
     func convertToDictionary () -> Any {
 
-        return ["name": self.name, "coordinates": self.coordinates as Any, "userID": self.userID, "photo": self.imageOfPoint as Any, "rating": self.rating] //, description": self.description, "imageOfPoint": self.imageOfPoint!, "rating": self.rating, "typeOfPond": self.typeOfPond]
+        return ["name": self.name, "coordinates": self.coordinates as Any, "userID": self.userID, "photo": self.imageOfPoint as Any, "rating": self.rating] //, description": self.description, "typeOfPond": self.typeOfPond]
     }
 }
