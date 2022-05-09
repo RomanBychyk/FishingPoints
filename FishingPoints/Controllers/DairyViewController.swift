@@ -53,7 +53,7 @@ class DairyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         cell.dateOfTheFishing.text = note.fishingDate
         cell.placeOfTheFishing.text = note.fishingPlace
-        //cell.catchesCount.text = String(note.catchesCount)
+        cell.catchesCount.text = String(describing: note.catchesCount!)
         
         return cell
     }
@@ -82,6 +82,4 @@ class DairyViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     */
     
-    
-
 }

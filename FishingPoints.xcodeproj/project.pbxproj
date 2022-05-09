@@ -25,6 +25,7 @@
 		0F833869280808B8008946AB /* CatchesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F833868280808B7008946AB /* CatchesTableViewCell.swift */; };
 		0F83386B28081E9C008946AB /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F83386A28081E9C008946AB /* NoteModel.swift */; };
 		0F83386D28082246008946AB /* CatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F83386C28082246008946AB /* CatchModel.swift */; };
+		0FA65A1F28293EA500BAC1B3 /* NewCatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA65A1E28293EA400BAC1B3 /* NewCatchViewController.swift */; };
 		0FFC89FA27FAE08A009FAA8F /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC89F927FAE08A009FAA8F /* UserModel.swift */; };
 		0FFC89FC27FED558009FAA8F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC89FB27FED558009FAA8F /* MapViewController.swift */; };
 		5665CAFD0CEDCC2A8F7BDF2C /* Pods_FishingPoints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6AD3F85195FE09A744C7906 /* Pods_FishingPoints.framework */; };
@@ -51,6 +52,7 @@
 		0F833868280808B7008946AB /* CatchesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchesTableViewCell.swift; sourceTree = "<group>"; };
 		0F83386A28081E9C008946AB /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
 		0F83386C28082246008946AB /* CatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchModel.swift; sourceTree = "<group>"; };
+		0FA65A1E28293EA400BAC1B3 /* NewCatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCatchViewController.swift; sourceTree = "<group>"; };
 		0FFC89F927FAE08A009FAA8F /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		0FFC89FB27FED558009FAA8F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		433A935A2E4495703F117EA3 /* Pods-FishingPoints.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FishingPoints.release.xcconfig"; path = "Target Support Files/Pods-FishingPoints/Pods-FishingPoints.release.xcconfig"; sourceTree = "<group>"; };
@@ -104,13 +106,14 @@
 		0FFC89FD27FEFDF8009FAA8F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0F0F40E927F19CEF00B9963C /* LoginViewController.swift */,
+				0F0F40F927F1C75700B9963C /* TabBarController.swift */,
+				0F0F40FB27F1DDC800B9963C /* PointsViewController.swift */,
 				0F0F410327F2FB6200B9963C /* NewPointViewController.swift */,
 				0FFC89FB27FED558009FAA8F /* MapViewController.swift */,
 				0F0F40FD27F1DDDD00B9963C /* DairyViewController.swift */,
 				0F833866280703FB008946AB /* NewNoteViewController.swift */,
-				0F0F40E927F19CEF00B9963C /* LoginViewController.swift */,
-				0F0F40F927F1C75700B9963C /* TabBarController.swift */,
-				0F0F40FB27F1DDC800B9963C /* PointsViewController.swift */,
+				0FA65A1E28293EA400BAC1B3 /* NewCatchViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				0FFC89FC27FED558009FAA8F /* MapViewController.swift in Sources */,
 				0F0F40FC27F1DDC800B9963C /* PointsViewController.swift in Sources */,
 				0F0F40EA27F19CEF00B9963C /* LoginViewController.swift in Sources */,
+				0FA65A1F28293EA500BAC1B3 /* NewCatchViewController.swift in Sources */,
 				0F833867280703FB008946AB /* NewNoteViewController.swift in Sources */,
 				0F8338652806F6D0008946AB /* DairyTableViewCell.swift in Sources */,
 				0F0F410027F1EFA700B9963C /* PointTableViewCell.swift in Sources */,

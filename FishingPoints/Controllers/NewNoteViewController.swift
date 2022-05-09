@@ -37,26 +37,30 @@ class NewNoteViewController: UIViewController {
         dateFormatter.dateFormat = "dd MM yyyy"
         dateStr = dateFormatter.string(from: datePicker.date)
         
-        
-
+        self.notesTextView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
     }
     
     func saveNote () {
-        
         newNote = Note(fishingDate: dateStr, fishingPlace: fishingPlaceTF.text, catchesCount: catches.count, catches: catches, notesAboutTrip: notesTextView.text)
-        
     }
     
     @IBAction func cancelAction(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func addCatchAction(_ sender: Any) {
+    @IBAction func unwindSegue (_ segue: UIStoryboardSegue) {
         
+        guard let newCatchVC = segue.source as? NewCatchViewController else { return }
+        
+        newCatchVC.saveNewCatch()
+        catches.append(newCatchVC.newCatch!)
+        catchesTableView.reloadData()
         
     }
     
-    
+    @objc func tapDone(sender: Any) {
+            self.view.endEditing(true)
+        }
     /*
     // MARK: - Navigation
 
@@ -91,9 +95,33 @@ extension NewNoteViewController: UITableViewDelegate, UITableViewDataSource {
         cell.fishKindTF.text = fishCatch.fishKind
         cell.fishSizeTF.text = fishCatch.fishSize
         cell.baitTF.text = fishCatch.bait
+        cell.locationTF.text = fishCatch.location
+        cell.catchTimeTF.text = fishCatch.time
+        cell.numberOfCell.text = "\(catches.index(after: indexPath.row))"
         
         return cell
     }
     
 }
 
+extension NewNoteViewController: UITextFieldDelegate, UITextViewDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
+extension UITextView {
+    
+    func addDoneButton(title: String, target: Any, selector: Selector) {
+        let toolBar = UIToolbar(frame: CGRect(x: 0.0,
+                                              y: 0.0,
+                                              width: UIScreen.main.bounds.size.width,
+                                              height: 44.0))
+        let flexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let barButton = UIBarButtonItem(title: title, style: .plain, target: target, action: selector)
+        toolBar.setItems([flexible, barButton], animated: false)
+        self.inputAccessoryView = toolBar
+    }
+}
