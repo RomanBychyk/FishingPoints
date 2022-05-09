@@ -49,7 +49,7 @@ class PointsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewWillAppear(animated)
         
         ref.observe(.value) { [weak self] snapshot in
-            //создал массив для хранения задач, чтобы каждый раз проходя по циклу не дублировались записи
+            //создал массив для хранения точек, чтобы каждый раз проходя по циклу не дублировались записи
             var _points = Array<Point>()
             for item in snapshot.children {
                 let point = Point(snapshot: item as! DataSnapshot)
@@ -79,9 +79,7 @@ class PointsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         cell.nameLabel.text = point.name
         cell.coordinateLabel.text = point.coordinates
-//        let decodeData = Data(base64Encoded: point.imageOfPoint!, options: .ignoreUnknownCharacters)!
-//        let decodedImage = UIImage(data: decodeData)
-        cell.imageOfPoint.image = decodeImage(fromString: point.imageOfPoint!)//decodedImage
+        cell.imageOfPoint.image = decodeImage(fromString: point.imageOfPoint!)
         cell.imageOfPoint.layer.cornerRadius = cell.imageOfPoint.frame.size.height / 2
         cell.imageOfPoint.clipsToBounds = true
         cell.cosmosView.rating = point.rating

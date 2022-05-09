@@ -10,33 +10,37 @@ import FirebaseDatabase
 
 struct Note {
     
-    var fishingDate: String
+    var fishingDate: String?
     var fishingPlace: String?
     var catchesCount: Int?
-    var catches: [Catch]
-    var notes: String?
+    var catches: [Catch]?
+    var notesAboutTrip: String?
     
     let ref: DatabaseReference?
     
-    init(fishingDate: String, fishingPlace: String?, catchesCount: Int?, catches: [Catch], notes: String?) {
+    init(fishingDate: String?, fishingPlace: String?, catchesCount: Int?, catches: [Catch]?, notesAboutTrip: String?) {
         self.fishingDate = fishingDate
         self.fishingPlace = fishingPlace
         self.catchesCount = catchesCount
-        self.catches = catches
-        self.notes = notes
+        self.catches = nil//catches
+        self.notesAboutTrip = notesAboutTrip
         self.ref = nil
     }
     
     init (snapShot: DataSnapshot) {
         let snapShotValue = snapShot.value as! [String: AnyObject]
         
-        fishingDate = snapShotValue["fishingDate"] as! String
+        fishingDate = snapShotValue["fishingDate"] as? String
         fishingPlace = snapShotValue["fishingPlace"] as? String
         catchesCount = snapShotValue["catchesCount"] as? Int
-        catches = snapShotValue["catches"] as! [Catch]
-        notes = snapShotValue["notes"] as? String
+        catches = snapShotValue["catches"] as? [Catch]
+        notesAboutTrip = snapShotValue["notesAboutTrip"] as? String
         ref = snapShot.ref
         
+    }
+    
+    func convertToDictionary () -> Any {
+        return ["fishingDate": self.fishingDate as Any, "fishingPlace": self.fishingPlace as Any, "catchesCount": self.catchesCount as Any, "catches": catches as Any, "notesAboutTrip": self.notesAboutTrip as Any]
     }
     
 }

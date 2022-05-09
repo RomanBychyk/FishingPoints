@@ -33,15 +33,17 @@ class NewNoteViewController: UIViewController {
         super.viewDidLoad()
         
         datePicker.addTarget(self, action: #selector(dateChanged), for: .editingChanged)
-        dateStr = DateFormatter().string(from: datePicker.date)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MM yyyy"
+        dateStr = dateFormatter.string(from: datePicker.date)
+        
+        
 
     }
     
     func saveNote () {
         
-        let dateString = DateFormatter().string(from: datePicker.date)
-        print(dateString)
-        newNote = Note(fishingDate: dateStr, fishingPlace: fishingPlaceTF.text, catchesCount: catches.count, catches: catches, notes: notesTextView.text)
+        newNote = Note(fishingDate: dateStr, fishingPlace: fishingPlaceTF.text, catchesCount: catches.count, catches: catches, notesAboutTrip: notesTextView.text)
         
     }
     
@@ -50,7 +52,8 @@ class NewNoteViewController: UIViewController {
     }
     
     @IBAction func addCatchAction(_ sender: Any) {
-
+        
+        
     }
     
     
@@ -66,24 +69,31 @@ class NewNoteViewController: UIViewController {
 
 }
 
+
+
 extension NewNoteViewController: UIPickerViewDelegate {
     
     @objc func dateChanged(sender : UIDatePicker){
-            let dateFormater = DateFormatter()
-            let strDate = dateFormater.string(from: (datePicker?.date)!)
         self.view.endEditing(true)
-        }
+    }
 }
 
 extension NewNoteViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return catches.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "catchCell") as! CatchesTableViewCell
         
+        let fishCatch = catches[indexPath.row]
+        
+        cell.fishKindTF.text = fishCatch.fishKind
+        cell.fishSizeTF.text = fishCatch.fishSize
+        cell.baitTF.text = fishCatch.bait
+        
         return cell
     }
+    
 }
+
