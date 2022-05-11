@@ -57,6 +57,13 @@ class DairyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let note = notes[indexPath.row]
+            note.ref?.removeValue()
+        }
+    }
 
     @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
         guard let newNoteVC = segue.source as? NewNoteViewController else { return }

@@ -26,6 +26,10 @@
 		0F83386B28081E9C008946AB /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F83386A28081E9C008946AB /* NoteModel.swift */; };
 		0F83386D28082246008946AB /* CatchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F83386C28082246008946AB /* CatchModel.swift */; };
 		0FA65A1F28293EA500BAC1B3 /* NewCatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA65A1E28293EA400BAC1B3 /* NewCatchViewController.swift */; };
+		0FA65A212829931800BAC1B3 /* NetworkWeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA65A202829931800BAC1B3 /* NetworkWeatherManager.swift */; };
+		0FA65A23282A569100BAC1B3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA65A22282A569100BAC1B3 /* Constants.swift */; };
+		0FA65A25282A667300BAC1B3 /* CertainWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA65A24282A667300BAC1B3 /* CertainWeatherData.swift */; };
+		0FA65A27282A77FC00BAC1B3 /* CertainWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA65A26282A77FC00BAC1B3 /* CertainWeather.swift */; };
 		0FFC89FA27FAE08A009FAA8F /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC89F927FAE08A009FAA8F /* UserModel.swift */; };
 		0FFC89FC27FED558009FAA8F /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFC89FB27FED558009FAA8F /* MapViewController.swift */; };
 		5665CAFD0CEDCC2A8F7BDF2C /* Pods_FishingPoints.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6AD3F85195FE09A744C7906 /* Pods_FishingPoints.framework */; };
@@ -53,6 +57,10 @@
 		0F83386A28081E9C008946AB /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
 		0F83386C28082246008946AB /* CatchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatchModel.swift; sourceTree = "<group>"; };
 		0FA65A1E28293EA400BAC1B3 /* NewCatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCatchViewController.swift; sourceTree = "<group>"; };
+		0FA65A202829931800BAC1B3 /* NetworkWeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkWeatherManager.swift; sourceTree = "<group>"; };
+		0FA65A22282A569100BAC1B3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0FA65A24282A667300BAC1B3 /* CertainWeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertainWeatherData.swift; sourceTree = "<group>"; };
+		0FA65A26282A77FC00BAC1B3 /* CertainWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CertainWeather.swift; sourceTree = "<group>"; };
 		0FFC89F927FAE08A009FAA8F /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		0FFC89FB27FED558009FAA8F /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		433A935A2E4495703F117EA3 /* Pods-FishingPoints.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FishingPoints.release.xcconfig"; path = "Target Support Files/Pods-FishingPoints/Pods-FishingPoints.release.xcconfig"; sourceTree = "<group>"; };
@@ -96,7 +104,7 @@
 				0FFC89FE27FEFE3C009FAA8F /* Models */,
 				0FFC89FF27FEFE63009FAA8F /* Views */,
 				0FFC89FD27FEFDF8009FAA8F /* Controllers */,
-				0FFC8A0027FEFEB8009FAA8F /* Support files */,
+				0FFC8A0027FEFEB8009FAA8F /* Supporting files */,
 				0F0F40F327F19CF200B9963C /* Info.plist */,
 				0F0F410527F59D5300B9963C /* GoogleService-Info.plist */,
 			);
@@ -125,6 +133,9 @@
 				0F0F410127F2053700B9963C /* PointModel.swift */,
 				0F83386A28081E9C008946AB /* NoteModel.swift */,
 				0F83386C28082246008946AB /* CatchModel.swift */,
+				0FA65A202829931800BAC1B3 /* NetworkWeatherManager.swift */,
+				0FA65A24282A667300BAC1B3 /* CertainWeatherData.swift */,
+				0FA65A26282A77FC00BAC1B3 /* CertainWeather.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -141,14 +152,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		0FFC8A0027FEFEB8009FAA8F /* Support files */ = {
+		0FFC8A0027FEFEB8009FAA8F /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
 				0F0F40E527F19CEF00B9963C /* AppDelegate.swift */,
 				0F0F40E727F19CEF00B9963C /* SceneDelegate.swift */,
 				0F0F40EE27F19CF200B9963C /* Assets.xcassets */,
+				0FA65A22282A569100BAC1B3 /* Constants.swift */,
 			);
-			path = "Support files";
+			path = "Supporting files";
 			sourceTree = "<group>";
 		};
 		2B50299563E4A85AE0E06EFE /* Frameworks */ = {
@@ -285,8 +297,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0FFC89FC27FED558009FAA8F /* MapViewController.swift in Sources */,
+				0FA65A23282A569100BAC1B3 /* Constants.swift in Sources */,
 				0F0F40FC27F1DDC800B9963C /* PointsViewController.swift in Sources */,
 				0F0F40EA27F19CEF00B9963C /* LoginViewController.swift in Sources */,
+				0FA65A25282A667300BAC1B3 /* CertainWeatherData.swift in Sources */,
 				0FA65A1F28293EA500BAC1B3 /* NewCatchViewController.swift in Sources */,
 				0F833867280703FB008946AB /* NewNoteViewController.swift in Sources */,
 				0F8338652806F6D0008946AB /* DairyTableViewCell.swift in Sources */,
@@ -296,7 +310,9 @@
 				0F0F40FA27F1C75700B9963C /* TabBarController.swift in Sources */,
 				0F833869280808B8008946AB /* CatchesTableViewCell.swift in Sources */,
 				0F83386B28081E9C008946AB /* NoteModel.swift in Sources */,
+				0FA65A212829931800BAC1B3 /* NetworkWeatherManager.swift in Sources */,
 				0F0F40E627F19CEF00B9963C /* AppDelegate.swift in Sources */,
+				0FA65A27282A77FC00BAC1B3 /* CertainWeather.swift in Sources */,
 				0F0F410227F2053700B9963C /* PointModel.swift in Sources */,
 				0FFC89FA27FAE08A009FAA8F /* UserModel.swift in Sources */,
 				0F0F40E827F19CEF00B9963C /* SceneDelegate.swift in Sources */,

@@ -29,6 +29,8 @@ class NewNoteViewController: UIViewController {
     var user: Users!
     var ref: DatabaseReference!
     
+    let networkWeatherManager = NetworkWeatherManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,8 +38,11 @@ class NewNoteViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MM yyyy"
         dateStr = dateFormatter.string(from: datePicker.date)
+        print(datePicker.date.timeIntervalSince1970)
+        
         
         self.notesTextView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
+        
     }
     
     func saveNote () {
@@ -60,17 +65,7 @@ class NewNoteViewController: UIViewController {
     
     @objc func tapDone(sender: Any) {
             self.view.endEditing(true)
-        }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
-
 }
 
 
@@ -95,13 +90,25 @@ extension NewNoteViewController: UITableViewDelegate, UITableViewDataSource {
         cell.fishKindTF.text = fishCatch.fishKind
         cell.fishSizeTF.text = fishCatch.fishSize
         cell.baitTF.text = fishCatch.bait
-        cell.locationTF.text = fishCatch.location
         cell.catchTimeTF.text = fishCatch.time
         cell.numberOfCell.text = "\(catches.index(after: indexPath.row))"
         
+        cell.locationTF.text = fishCatch.location
+        let coordinatesArr = cell.locationTF.text?.components(separatedBy: ", ")
+        
+        let unixTime = convertDateString(withDate: dateStr, and: cell.catchTimeTF.text)?.timeIntervalSince1970.rounded()
+        
+        networkWeatherManager.fetchWeather(forTime: Int(unixTime!), byCoordinates:  (coordinatesArr?.first)!, and: (coordinatesArr?.last)!){ certainWeather in
+//            print(certainWeather.pressure)
+            DispatchQueue.main.async {
+                cell.pressureLabel.text = certainWeather.presStr
+                cell.temperatureLabel.text = certainWeather.tempStr
+                cell.wheatherConditionLabel.text = certainWeather.conditionCodeString
+            }
+        }
         return cell
     }
-    
+
 }
 
 extension NewNoteViewController: UITextFieldDelegate, UITextViewDelegate {
@@ -125,3 +132,18 @@ extension UITextView {
         self.inputAccessoryView = toolBar
     }
 }
+
+
+//work with time
+extension NewNoteViewController {
+    func convertDateString (withDate dateStr: String?, and timeStr: String?) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "dd MM yyyy 'at' hh:mm"
+        let string = dateStr! + " at " + timeStr!
+        guard let finalDate = dateFormatter.date(from: string) else { return nil }
+        //print(finalDate)
+        return finalDate
+    }
+}
+
