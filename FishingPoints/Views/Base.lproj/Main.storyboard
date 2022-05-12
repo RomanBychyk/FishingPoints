@@ -181,6 +181,7 @@
                                             <outlet property="catchesCount" destination="A1L-Bg-zpi" id="cQR-JK-n8R"/>
                                             <outlet property="dateOfTheFishing" destination="Jjo-ZI-7JH" id="JQI-TI-bza"/>
                                             <outlet property="placeOfTheFishing" destination="8S1-IB-L7g" id="GXT-zO-ero"/>
+                                            <segue destination="3Sh-ih-QFo" kind="show" identifier="showNoteDetail" id="23Y-Gb-iuJ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -414,7 +415,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Eaa-JD-LHR">
-                                <rect key="frame" x="8" y="594" width="398" height="248"/>
+                                <rect key="frame" x="8" y="594" width="398" height="219"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -423,6 +424,12 @@
                                     <outlet property="delegate" destination="3Sh-ih-QFo" id="52S-XI-y2F"/>
                                 </connections>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date of the trip" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQr-JR-WIw">
+                                <rect key="frame" x="8" y="66" width="398" height="38"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VbK-Rs-GtL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -430,6 +437,9 @@
                             <constraint firstItem="fVT-RG-8aA" firstAttribute="top" secondItem="n1f-Uu-kG0" secondAttribute="bottom" constant="10" id="0pZ-rq-J8g"/>
                             <constraint firstItem="VbK-Rs-GtL" firstAttribute="trailing" secondItem="Eaa-JD-LHR" secondAttribute="trailing" constant="8" id="4be-IG-nHG"/>
                             <constraint firstItem="A0G-sg-5ux" firstAttribute="leading" secondItem="F58-Wh-ldR" secondAttribute="trailing" constant="276" id="7u4-Xr-quD"/>
+                            <constraint firstItem="bQr-JR-WIw" firstAttribute="leading" secondItem="VbK-Rs-GtL" secondAttribute="leading" constant="8" id="9Xt-As-QCI"/>
+                            <constraint firstItem="bQr-JR-WIw" firstAttribute="top" secondItem="VbK-Rs-GtL" secondAttribute="top" constant="10" id="A1O-gM-gl0"/>
+                            <constraint firstItem="ZaL-Hv-9zI" firstAttribute="top" secondItem="bQr-JR-WIw" secondAttribute="bottom" constant="10" id="BFh-Eg-ie4"/>
                             <constraint firstItem="A0G-sg-5ux" firstAttribute="top" secondItem="ZaL-Hv-9zI" secondAttribute="bottom" constant="10" id="DCA-Uw-RlI"/>
                             <constraint firstItem="F58-Wh-ldR" firstAttribute="top" secondItem="ZaL-Hv-9zI" secondAttribute="bottom" constant="10" id="IKV-yf-Cc7"/>
                             <constraint firstItem="VbK-Rs-GtL" firstAttribute="bottom" secondItem="Eaa-JD-LHR" secondAttribute="bottom" id="QL3-HB-8oA"/>
@@ -448,6 +458,7 @@
                             <constraint firstItem="c9V-Cn-S5W" firstAttribute="top" secondItem="VbK-Rs-GtL" secondAttribute="top" constant="8" id="kaw-D5-OtW"/>
                             <constraint firstItem="fVT-RG-8aA" firstAttribute="leading" secondItem="VbK-Rs-GtL" secondAttribute="leading" constant="8" id="lTx-R1-03d"/>
                             <constraint firstItem="F58-Wh-ldR" firstAttribute="leading" secondItem="VbK-Rs-GtL" secondAttribute="leading" constant="8" id="ns5-9H-8kN"/>
+                            <constraint firstItem="VbK-Rs-GtL" firstAttribute="trailing" secondItem="bQr-JR-WIw" secondAttribute="trailing" constant="8" id="vGe-AJ-OwZ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New note" id="fFT-j8-5T5">
@@ -464,6 +475,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="catchesTableView" destination="n1f-Uu-kG0" id="qcT-jL-n4L"/>
+                        <outlet property="dateLabel" destination="bQr-JR-WIw" id="lr6-43-XcJ"/>
                         <outlet property="datePicker" destination="c9V-Cn-S5W" id="SuX-UT-a6V"/>
                         <outlet property="fishingPlaceTF" destination="ZaL-Hv-9zI" id="hKM-nL-hXE"/>
                         <outlet property="notesTextView" destination="Eaa-JD-LHR" id="3i9-lA-Fds"/>
@@ -1273,6 +1285,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="ohr-MC-0OZ"/>
         <segue reference="8Kf-QE-dgU"/>
+        <segue reference="23Y-Gb-iuJ"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="LogoFishingPoints" width="120" height="120"/>

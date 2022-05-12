@@ -16,9 +16,8 @@ class NewNoteViewController: UIViewController {
     @IBOutlet weak var fishingPlaceTF: UITextField!
     @IBOutlet weak var catchesTableView: UITableView!
     @IBOutlet weak var notesTextView: UITextView!
-    
-    //catches outlets
-    
+    @IBOutlet weak var dateLabel: UILabel!
+        
     var catches = [Catch]()
     var currentNote: Note?
     var dateStr = ""
@@ -42,6 +41,8 @@ class NewNoteViewController: UIViewController {
         
         
         self.notesTextView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
+        
+        setupEditScreen()
         
     }
     
@@ -136,7 +137,7 @@ extension UITextView {
 
 //work with time
 extension NewNoteViewController {
-    func convertDateString (withDate dateStr: String?, and timeStr: String?) -> Date? {
+    private func convertDateString (withDate dateStr: String?, and timeStr: String?) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "dd MM yyyy 'at' hh:mm"
@@ -144,6 +145,27 @@ extension NewNoteViewController {
         guard let finalDate = dateFormatter.date(from: string) else { return nil }
         //print(finalDate)
         return finalDate
+    }
+}
+
+//work with editing screen
+extension NewNoteViewController {
+    
+    private func setupEditScreen(){
+        if currentNote != nil {
+            setupNavigationBar()
+            datePicker.isHidden = true
+            dateLabel.text = currentNote?.fishingDate
+            fishingPlaceTF.text = currentNote?.fishingPlace
+            notesTextView.text = currentNote?.notesAboutTrip
+            
+            
+        }
+    }
+    private func setupNavigationBar() {
+        navigationItem.leftBarButtonItem = nil
+        guard let date = currentNote?.fishingDate, let place = currentNote?.fishingPlace else { return }
+        navigationItem.title = date + " " + place
     }
 }
 
