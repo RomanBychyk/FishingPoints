@@ -33,6 +33,10 @@ class NewNoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+      guard let currentUser = Auth.auth().currentUser else { return }
+        user = Users(user: currentUser)
+//        ref = Database.database(url: "https://fishingpoints-e0f7c-default-rtdb.firebaseio.com/").reference(withPath: "users").child(user.uid).child("dairy")//.child("catches")
+        
         datePicker.addTarget(self, action: #selector(dateChanged), for: .editingChanged)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MM yyyy"
@@ -43,8 +47,24 @@ class NewNoteViewController: UIViewController {
         self.notesTextView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
         
         setupEditScreen()
+        dateLabel.isHidden = true
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        ref = Database.database(url: "https://fishingpoints-e0f7c-default-rtdb.firebaseio.com/").reference(withPath: "users").child(user.uid).child("dairy").child(dateStr).child("catches")
+        ref.observe(.value) { [weak self] snapshot in
+            //создал массив для хранения поимок, чтобы каждый раз проходя по циклу не дублировались записи
+            var _catches = Array<Catch>()
+            for item in snapshot.children {
+                let fishCatch = Catch(snapShot: item as! DataSnapshot)
+                _catches.append(fishCatch)
+            }
+            self?.catches = _catches
+            self?.catchesTableView.reloadData()
+        }
+    }
+    
     
     func saveNote () {
         newNote = Note(fishingDate: dateStr, fishingPlace: fishingPlaceTF.text, catchesCount: catches.count, catches: catches, notesAboutTrip: notesTextView.text)
@@ -155,6 +175,7 @@ extension NewNoteViewController {
         if currentNote != nil {
             setupNavigationBar()
             datePicker.isHidden = true
+            dateLabel.isHidden = false
             dateLabel.text = currentNote?.fishingDate
             fishingPlaceTF.text = currentNote?.fishingPlace
             notesTextView.text = currentNote?.notesAboutTrip

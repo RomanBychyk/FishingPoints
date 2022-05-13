@@ -74,6 +74,13 @@ class DairyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let noteRef = ref?.child(newNote.fishingDate!)
         //и теперь по этой ссылке помещаем нашу новую запись в дневник
         noteRef?.setValue(newNote.convertToDictionary())
+        var i = 0
+        for fishCatch in newNoteVC.catches {
+            let newCatch = fishCatch
+            i += 1
+            let catchRef = noteRef?.child("catches").child("\(i)")
+            catchRef?.setValue(newCatch.convertToDictionary())
+        }
         
         //notes.append(newNoteVC.newNote!)
         notes.append(newNoteVC.newNote!)
