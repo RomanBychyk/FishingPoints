@@ -45,9 +45,9 @@ class NewNoteViewController: UIViewController {
         
         
         self.notesTextView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
-        
-        setupEditScreen()
         dateLabel.isHidden = true
+
+        setupEditScreen()
         
     }
     override func viewWillAppear(_ animated: Bool) {
