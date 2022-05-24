@@ -133,7 +133,7 @@ extension NewNoteViewController: UITableViewDelegate, UITableViewDataSource {
             DispatchQueue.main.async {
                 cell.pressureLabel.text = certainWeather.presStr
                 cell.temperatureLabel.text = certainWeather.tempStr
-                cell.wheatherConditionLabel.text = certainWeather.conditionCodeString
+                cell.weatherConditionImage.image = UIImage(systemName: certainWeather.conditionCodeString) 
             }
         }
         return cell

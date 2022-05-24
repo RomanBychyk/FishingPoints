@@ -16,7 +16,7 @@ class CatchesTableViewCell: UITableViewCell {
     @IBOutlet weak var catchTimeTF: UITextField!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var pressureLabel: UILabel!
-    @IBOutlet weak var wheatherConditionLabel: UILabel!
+    @IBOutlet weak var weatherConditionImage: UIImageView!
     @IBOutlet weak var locationTF: UITextField!
     
     
