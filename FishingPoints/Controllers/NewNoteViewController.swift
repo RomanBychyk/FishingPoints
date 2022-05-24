@@ -35,14 +35,12 @@ class NewNoteViewController: UIViewController {
         
       guard let currentUser = Auth.auth().currentUser else { return }
         user = Users(user: currentUser)
-//        ref = Database.database(url: "https://fishingpoints-e0f7c-default-rtdb.firebaseio.com/").reference(withPath: "users").child(user.uid).child("dairy")//.child("catches")
         
         datePicker.addTarget(self, action: #selector(dateChanged), for: .editingChanged)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MM yyyy"
         dateStr = dateFormatter.string(from: datePicker.date)
-        print(datePicker.date.timeIntervalSince1970)
-        
+        dateLabel.text = dateStr
         
         self.notesTextView.addDoneButton(title: "Done", target: self, selector: #selector(tapDone(sender:)))
         dateLabel.isHidden = true
@@ -52,22 +50,25 @@ class NewNoteViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        ref = Database.database(url: "https://fishingpoints-e0f7c-default-rtdb.firebaseio.com/").reference(withPath: "users").child(user.uid).child("dairy").child(dateStr).child("catches")
-        ref.observe(.value) { [weak self] snapshot in
-            //создал массив для хранения поимок, чтобы каждый раз проходя по циклу не дублировались записи
-            var _catches = Array<Catch>()
-            for item in snapshot.children {
-                let fishCatch = Catch(snapShot: item as! DataSnapshot)
-                _catches.append(fishCatch)
+        if currentNote != nil {
+            ref = Database.database(url: "https://fishingpoints-e0f7c-default-rtdb.firebaseio.com/").reference(withPath: "users").child(user.uid).child("dairy").child(dateLabel.text!).child("catches")
+            ref.observe(.value) { [weak self] snapshot in
+                //создал массив для хранения поимок, чтобы каждый раз проходя по циклу не дублировались записи
+                var _catches = Array<Catch>()
+                for item in snapshot.children {
+                    let fishCatch = Catch(snapShot: item as! DataSnapshot)
+                    _catches.append(fishCatch)
+                }
+                self?.catches = _catches
+                self?.catchesTableView.reloadData()
             }
-            self?.catches = _catches
-            self?.catchesTableView.reloadData()
         }
+      
     }
     
     
     func saveNote () {
-        newNote = Note(fishingDate: dateStr, fishingPlace: fishingPlaceTF.text, catchesCount: catches.count, catches: catches, notesAboutTrip: notesTextView.text)
+        newNote = Note(fishingDate: /*dateLabel.text!*/dateStr, fishingPlace: fishingPlaceTF.text, catchesCount: catches.count, catches: catches, notesAboutTrip: notesTextView.text)
     }
     
     @IBAction func cancelAction(_ sender: Any) {
@@ -83,6 +84,15 @@ class NewNoteViewController: UIViewController {
         catchesTableView.reloadData()
         
     }
+    @IBAction func datePickerChanged(_ sender: Any) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MM yyyy"
+
+        dateStr = dateFormatter.string(from: datePicker.date)
+        print(dateStr)
+        
+    }
+    
     
     @objc func tapDone(sender: Any) {
             self.view.endEditing(true)
@@ -117,10 +127,9 @@ extension NewNoteViewController: UITableViewDelegate, UITableViewDataSource {
         cell.locationTF.text = fishCatch.location
         let coordinatesArr = cell.locationTF.text?.components(separatedBy: ", ")
         
-        let unixTime = convertDateString(withDate: dateStr, and: cell.catchTimeTF.text)?.timeIntervalSince1970.rounded()
+        guard let unixTime = convertDateString(withDate: dateStr, and: cell.catchTimeTF.text)?.timeIntervalSince1970.rounded() else { return cell }
         
-        networkWeatherManager.fetchWeather(forTime: Int(unixTime!), byCoordinates:  (coordinatesArr?.first)!, and: (coordinatesArr?.last)!){ certainWeather in
-//            print(certainWeather.pressure)
+        networkWeatherManager.fetchWeather(forTime: Int(unixTime), byCoordinates:  (coordinatesArr?.first)!, and: (coordinatesArr?.last)!){ certainWeather in
             DispatchQueue.main.async {
                 cell.pressureLabel.text = certainWeather.presStr
                 cell.temperatureLabel.text = certainWeather.tempStr
@@ -174,13 +183,13 @@ extension NewNoteViewController {
     private func setupEditScreen(){
         if currentNote != nil {
             setupNavigationBar()
-            datePicker.isHidden = true
+            datePicker.removeFromSuperview()
+            //datePicker.isHidden = true
             dateLabel.isHidden = false
             dateLabel.text = currentNote?.fishingDate
             fishingPlaceTF.text = currentNote?.fishingPlace
             notesTextView.text = currentNote?.notesAboutTrip
-            
-            
+
         }
     }
     private func setupNavigationBar() {
