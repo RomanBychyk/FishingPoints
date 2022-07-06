@@ -22,13 +22,17 @@ class NewNoteViewController: UIViewController {
     var currentNote: Note?
     var dateStr = ""
     
-    
     var newCatch: Catch?
     var newNote: Note!
     var user: Users!
     var ref: DatabaseReference!
     
     let networkWeatherManager = NetworkWeatherManager()
+    
+    //проба передачи данных для погодных условий
+    var currTemp: Double?
+    var currPress: Double?
+    var currWeatherConditions: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +52,7 @@ class NewNoteViewController: UIViewController {
         setupEditScreen()
         
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if currentNote != nil {
@@ -63,9 +68,7 @@ class NewNoteViewController: UIViewController {
                 self?.catchesTableView.reloadData()
             }
         }
-      
     }
-    
     
     func saveNote () {
         newNote = Note(fishingDate: /*dateLabel.text!*/dateStr, fishingPlace: fishingPlaceTF.text, catchesCount: catches.count, catches: catches, notesAboutTrip: notesTextView.text)
@@ -80,17 +83,19 @@ class NewNoteViewController: UIViewController {
         guard let newCatchVC = segue.source as? NewCatchViewController else { return }
         
         newCatchVC.saveNewCatch()
+//        newCatch?.temperature = currTemp
+//        newCatch?.pressure = currPress
+//        
         catches.append(newCatchVC.newCatch!)
         catchesTableView.reloadData()
-        
     }
+    
     @IBAction func datePickerChanged(_ sender: Any) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MM yyyy"
 
         dateStr = dateFormatter.string(from: datePicker.date)
         print(dateStr)
-        
     }
     
     
@@ -98,8 +103,6 @@ class NewNoteViewController: UIViewController {
             self.view.endEditing(true)
     }
 }
-
-
 
 extension NewNoteViewController: UIPickerViewDelegate {
     
@@ -116,7 +119,7 @@ extension NewNoteViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "catchCell") as! CatchesTableViewCell
         
-        let fishCatch = catches[indexPath.row]
+        var fishCatch = catches[indexPath.row]
         
         cell.fishKindTF.text = fishCatch.fishKind
         cell.fishSizeTF.text = fishCatch.fishSize
@@ -133,12 +136,23 @@ extension NewNoteViewController: UITableViewDelegate, UITableViewDataSource {
             DispatchQueue.main.async {
                 cell.pressureLabel.text = certainWeather.presStr
                 cell.temperatureLabel.text = certainWeather.tempStr
-                cell.weatherConditionImage.image = UIImage(systemName: certainWeather.conditionCodeString) 
+                cell.weatherConditionImage.image = UIImage(systemName: certainWeather.conditionCodeString)
+                
+                self.currTemp = Double((cell.temperatureLabel.text ?? nil)!)
+                self.currPress = Double((cell.pressureLabel.text ?? nil)!)
+                fishCatch.temperature = self.currTemp
+                fishCatch.pressure = self.currPress
             }
         }
         return cell
     }
-
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let fishCatch = catches[indexPath.row]
+            fishCatch.ref?.removeValue()
+        }
+    }
 }
 
 extension NewNoteViewController: UITextFieldDelegate, UITextViewDelegate {
@@ -163,7 +177,6 @@ extension UITextView {
     }
 }
 
-
 //work with time
 extension NewNoteViewController {
     private func convertDateString (withDate dateStr: String?, and timeStr: String?) -> Date? {
@@ -172,7 +185,6 @@ extension NewNoteViewController {
         dateFormatter.dateFormat = "dd MM yyyy 'at' hh:mm"
         let string = dateStr! + " at " + timeStr!
         guard let finalDate = dateFormatter.date(from: string) else { return nil }
-        //print(finalDate)
         return finalDate
     }
 }
@@ -183,8 +195,9 @@ extension NewNoteViewController {
     private func setupEditScreen(){
         if currentNote != nil {
             setupNavigationBar()
-            datePicker.removeFromSuperview()
-            //datePicker.isHidden = true
+            //datePicker.removeFromSuperview()
+            dateStr = (currentNote?.fishingDate)!
+            datePicker.isHidden = true
             dateLabel.isHidden = false
             dateLabel.text = currentNote?.fishingDate
             fishingPlaceTF.text = currentNote?.fishingPlace

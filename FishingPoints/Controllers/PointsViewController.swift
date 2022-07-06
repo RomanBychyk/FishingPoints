@@ -97,7 +97,6 @@ class PointsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             point.ref?.removeValue()
         }
     }
-   
     
     private func decodeImage (fromString string: String?) -> UIImage {
         let decodeData = Data(base64Encoded: string!, options: .ignoreUnknownCharacters)!
@@ -125,9 +124,6 @@ class PointsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
 
-
-    
-    
     @IBAction func signOutAction(_ sender: UIBarButtonItem) {
         do {
             try Auth.auth().signOut()

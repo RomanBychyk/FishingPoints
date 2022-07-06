@@ -12,8 +12,6 @@ import FirebaseStorage
 import Cosmos
 
 
-
-
 class NewPointViewController: UITableViewController {
     
     var currentPoint: Point?
@@ -24,15 +22,12 @@ class NewPointViewController: UITableViewController {
     var ref: DatabaseReference!
     var imageIsChange = false
     
-    
     @IBOutlet weak var imageOfPoint: UIImageView!
     @IBOutlet weak var pointName: UITextField!
     @IBOutlet weak var coordinatesTF: UITextField!
     @IBOutlet weak var pointType: UIPickerView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var cosmosView: CosmosView!
-    
-
     
     
     override func viewDidLoad() {
@@ -51,7 +46,6 @@ class NewPointViewController: UITableViewController {
         cosmosView.didTouchCosmos = { rating in
             self.currentRating = rating
         }
-        
     }
 
     
@@ -77,8 +71,6 @@ class NewPointViewController: UITableViewController {
             
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
             
-            
-            
             actionSheet.addAction(cameraAction)
             actionSheet.addAction(photoAction)
             actionSheet.addAction(cancelAction)
@@ -101,7 +93,6 @@ class NewPointViewController: UITableViewController {
             mapVC.point = currentPoint
         }
     }
-    
     
     func saveNewPoint () {
         
@@ -144,7 +135,6 @@ class NewPointViewController: UITableViewController {
 extension NewPointViewController: UITextFieldDelegate {
     
     //hide keyboard by press done
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -155,7 +145,6 @@ extension NewPointViewController: UITextFieldDelegate {
             saveButton.isEnabled = true
         }
     }
-    
 }
 
 //MARK: - Work with image

@@ -17,10 +17,11 @@ struct Catch {
     var temperature: Double?
     var pressure: Double?
     var location: String?
+    var wethCond: String?
     
     let ref: DatabaseReference?
     
-    init(fishKind: String, fishSize: String?, bait: String?, time: String?, temperature: Double?, pressure: Double?, location: String?) {
+    init(fishKind: String, fishSize: String?, bait: String?, time: String?, temperature: Double?, pressure: Double?, location: String?, wethCond: String?) {
         self.fishKind = fishKind
         self.fishSize = fishSize
         self.bait = bait
@@ -28,6 +29,7 @@ struct Catch {
         self.temperature = temperature
         self.pressure = pressure
         self.location = location
+        self.wethCond = wethCond
         
         ref = nil
     }
@@ -42,6 +44,7 @@ struct Catch {
         temperature = snapShotValue["temperature"] as? Double
         pressure = snapShotValue["pressure"] as? Double
         location = snapShotValue["location"] as? String
+        wethCond = snapShotValue["wethCond"] as? String
         
         ref = snapShot.ref
         
@@ -49,6 +52,6 @@ struct Catch {
     
     func convertToDictionary () -> Any {
         
-        return ["fishSize": self.fishSize as Any, "fishKind": self.fishKind, "bait": self.bait as Any, "time": self.time as Any, "temperature": self.temperature as Any, "pressure": self.pressure as Any, "location":self.location as Any]
+        return ["fishSize": self.fishSize as Any, "fishKind": self.fishKind, "bait": self.bait as Any, "time": self.time as Any, "temperature": self.temperature as Any, "pressure": self.pressure as Any, "location":self.location as Any, "wethCond": self.wethCond as Any]
     }
 }

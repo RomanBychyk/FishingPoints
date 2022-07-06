@@ -25,14 +25,15 @@ class NewCatchViewController: UITableViewController {
     }
     
     func saveNewCatch () {
-        newCatch = Catch(fishKind: fishKind.text!, fishSize: fishSize.text, bait: bait.text, time: time.text, temperature: nil, pressure: nil, location: coordinates.text)
+        newCatch = Catch(fishKind: fishKind.text!, fishSize: fishSize.text, bait: bait.text, time: time.text, temperature: nil, pressure: nil, location: coordinates.text, wethCond: nil)
     }
+    
+    
     
     
     @IBAction func cancelAction(_ sender: Any) {
         dismiss(animated: true)
     }
-    
 }
 
 extension NewCatchViewController: UITextFieldDelegate {

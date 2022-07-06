@@ -76,13 +76,14 @@ class DairyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         noteRef?.setValue(newNote.convertToDictionary())
         var i = 0
         for fishCatch in newNoteVC.catches {
-            let newCatch = fishCatch
+            var newCatch = fishCatch
             i += 1
+            newCatch.temperature = newNoteVC.currTemp
+            newCatch.pressure = newNoteVC.currPress
             let catchRef = noteRef?.child("catches").child("\(i)")
             catchRef?.setValue(newCatch.convertToDictionary())
         }
         
-        //notes.append(newNoteVC.newNote!)
         notes.append(newNoteVC.newNote!)
         tableView.reloadData()
     }

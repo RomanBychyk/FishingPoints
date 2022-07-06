@@ -20,7 +20,6 @@ class CatchesTableViewCell: UITableViewCell {
     @IBOutlet weak var locationTF: UITextField!
     
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
