@@ -77,7 +77,7 @@ class DairyViewController: UIViewController, UITableViewDelegate, UITableViewDat
         var i = 0
         for fishCatch in newNoteVC.catches {
             var newCatch = fishCatch
-            i += 1
+            i += 1и
             newCatch.temperature = newNoteVC.currTemp
             newCatch.pressure = newNoteVC.currPress
             let catchRef = noteRef?.child("catches").child("\(i)")
